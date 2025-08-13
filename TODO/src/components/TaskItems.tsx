@@ -1,5 +1,5 @@
 import React, { useState, type Dispatch, type SetStateAction } from "react";
-import type { Task } from "../types/task";
+import type { Task } from "../types/Task";
 import { FaEdit, FaTrashAlt, FaSave, FaCheckCircle, FaRegCircle } from 'react-icons/fa';
 
 const TaskItems = ({ task, setTasks }: { task: Task; setTasks: Dispatch<SetStateAction<Task[]>> }) => {
@@ -26,14 +26,14 @@ const TaskItems = ({ task, setTasks }: { task: Task; setTasks: Dispatch<SetState
   };
 
   return (
-    <li className={`flex items-center justify-between p-4 rounded-xl shadow-md transition-all duration-300 ${task.completed ? 'bg-slate-800 border-l-4 border-emerald-500' : 'bg-slate-800 border-l-4 border-transparent hover:bg-slate-700'}`}>
+    <li className={`flex items-center justify-between p-4 rounded-xl shadow-md transition-all duration-300 ${task.completed ? 'bg-bg-secondary border-l-4 border-emerald-500' : 'bg-bg-primary border-l-4 border-transparent hover:bg-hover-bg'}`}>
       {isEditing ? (
         <form onSubmit={onEditingCompleted} className="flex-grow flex items-center gap-3">
           <input
             type="text"
             value={newTask}
             onChange={(e: React.ChangeEvent<HTMLInputElement>) => setNewTask(e.target.value)}
-            className="flex-grow p-3 bg-slate-700 border border-slate-600 rounded-lg text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-sky-500 transition-shadow"
+            className="flex-grow p-3 bg-bg-secondary border border-border-color rounded-lg text-text-primary placeholder-text-secondary focus:outline-none focus:ring-2 focus:ring-sky-500 transition-shadow"
           />
           <button
             type="submit"
@@ -47,24 +47,24 @@ const TaskItems = ({ task, setTasks }: { task: Task; setTasks: Dispatch<SetState
           <div className="flex items-center gap-4 flex-grow">
             <button
               onClick={handlerCompleted}
-              className={`p-1 text-2xl transition-colors duration-200 ${task.completed ? 'text-emerald-500' : 'text-slate-500 hover:text-sky-400'}`}
+              className={`p-1 text-2xl transition-colors duration-200 ${task.completed ? 'text-emerald-500' : 'text-text-secondary hover:text-sky-600 dark:hover:text-sky-400'}`}
             >
               {task.completed ? <FaCheckCircle /> : <FaRegCircle />}
             </button>
-            <p className={`flex-grow text-lg font-medium ${task.completed ? 'line-through text-slate-500' : 'text-slate-200'}`}>
+            <p className={`flex-grow text-lg font-medium ${task.completed ? 'line-through text-text-secondary' : 'text-text-primary'}`}>
               {task.task}
             </p>
           </div>
           <div className="flex gap-2 ml-4">
             <button
               onClick={onEditing}
-              className="text-slate-400 p-2 hover:text-sky-400 transition-colors"
+              className="text-text-secondary p-2 hover:text-sky-600 dark:hover:text-sky-400 transition-colors"
             >
               <FaEdit />
             </button>
             <button
               onClick={handlerDelete}
-              className="text-slate-400 p-2 hover:text-red-500 transition-colors"
+              className="text-text-secondary p-2 hover:text-red-500 transition-colors"
             >
               <FaTrashAlt />
             </button>
